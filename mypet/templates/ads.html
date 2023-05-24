@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Table</title>
+</head>
+<body>
+    <h2>User Table</h2>
+    <table>
+        <tr>
+            <th>ad_id</th>
+            <th>Race</th>
+            <th>prix</th>
+            <th>age</th>
+            <th>animal_name</th>
+            <th>sex</th>
+        </tr>
+        {% for ad in ads %}
+        <tr>
+            <td>{{ ad.ad_id }}</td>
+            <td>{{ ad.race}}</td>
+            <td>{{ ad.prix}}</td>
+            <td>{{ ad.age }}</td>
+            <td>{{ ad.animal_name}}</td>
+            <td>{{ ad.sex}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

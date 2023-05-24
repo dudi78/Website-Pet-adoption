@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'csslogin.css' %}" >
+    <link rel="icon" href="./appartment.png">
+    
+    <title>LOGIN</title>
+   
+</head>
+
+<body>
+ 
+  <div class="login-wrap">
+    <div class="login-html">
+      <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+      <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+      <div class="login-form">
+
+        <div class="sign-in-htm">
+          <form action=" {% url 'login' %} " method="Post">
+           {% csrf_token %}
+          <div class="group">
+            <label for="user" class="label" >Username</label>
+            <input id="user" type="text" name="username" class="input">
+          </div>
+        
+          <div class="group">
+            <label for="pass" class="label">Password</label>
+            <input id="pass" type="password" name="password" class="input" data-type="password">
+          </div>
+          <div class="group">
+            <input id="check" type="checkbox" class="check" checked>
+            <label for="check"><span class="icon"></span> Keep me Signed in</label>
+          </div>
+          <div class="group">
+            <input type="submit" class="button" value="Sign In">
+          </div> <p style="color: rgb(241, 237, 237); text-align: center;"> Nouveau en @YourPet ? Cliquez <a style="color: #4E0027;" href="../front-end/linterfacelogin3 (1).html/html/body/login-wrap/login-html/login-form/sign-up-htm">Ici</a> pour creer votre Compte ! </p>
+          <div class="hr"></div>
+          
+        </form>
+        </div>
+        <form action="{% url 'Register' %}" method="Post">
+          {% csrf_token %}
+        <div class="sign-up-htm">
+         
+
+          <div class="group">
+            <label for="user" class="label" >Username</label>
+            <input id="user" type="text"name="username" class="input">
+          </div>
+          <div class="group">
+          <label for="user" class="label">nom</label>
+          <input id="user" type="text" name="lastname" class="input">
+           </div>
+          <div class="group">
+          <label for="user" class="label">prenom</label>
+          <input id="user" type="text" name="firstname" class="input">
+        </div> 
+          <div class="group">
+            <label for="user" class="label">tel</label>
+            <input id="user" type="tel" name="tel" class="input">
+          </div>
+          <div class="group">
+            <label for="pass" class="label">gmail</label>
+            <input id="pass"  name="email" class="input" >
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Password</label>
+            <input id="pass" type="password" class="input" name="password" data-type="password">
+            <div class="password-icon">
+              <i data-feather="eye"></i>
+              <i data-feather="eye-off"></i>
+            </div>
+          </div>
+         
+          <div class="group">
+            <input type="submit" class="button" value="Sign Up" >
+          </div>
+          <p style="color: rgb(241, 237, 237); text-align: center;"> Vous avez déjà un compte? cliquez<a style="color: #4E0027;" href="../front-end/linterfacelogin3 (1).html/html/body/login-wrap/login-html/login-form/sign-up-htm"> ici</a> pour s'authentifier ! </p>
+          <div class="hr"></div>
+         </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{{error}}
+ 
+    
+    
+    
+</body>
+</html>
