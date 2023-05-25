@@ -301,9 +301,10 @@ nav a:hover {
             top: 30px;
             left: 40px;">Remplir ces informations</h1>
             
-			<form action="{% url 'create_ad' %}" method="POST" enctype="multipart/form-data">
+			<form action="" method="POST" enctype="multipart/form-data">
               
             <fieldset style="background-color: white;">
+              {% csrf_token %}
                 <legend><h3>Informations sur l'animal</h3></legend>
                 <label for="nom-animal">Nom de l'animal :</label>
                 <input type="text" id="nom-animal" name="animalname" placeholder="Le nom de l'animal " required style="width:49%; color:black; padding:10px 10px;"><br><br>
@@ -331,11 +332,11 @@ nav a:hover {
                 
                 <input type="file" id="image" name="image3"><br><br>
                 
-              
+                <button type="submit" value="Soumettre"> Valider</button> &nbsp;
             </fieldset>
               </form>
             <div>
-            <button type="submit" value="Soumettre"> Valider</button> &nbsp;
+            
 			<button onclick="fermerPopup()" style="float: left; background-color: #9E9E9E;">Annuler</button></div> 
 		</div>
 	</div>
