@@ -21,9 +21,9 @@
   <nav class="menu">
     <a href="#link"><i id="la" class="fa fa-address-card-o" aria-hidden="true"></i> Mon compte </a>
     <a href="{% url 'annonces' %} "><i class="fa fa-newspaper-o" aria-hidden="true"></i> Mes Annonces</a>
-    <a href="#link"><i class="fa fa-sign-out" aria-hidden="true"></i>deconnexion</a>
+    <a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>deconnexion</a>
     <a href="#link"> <i class="fa fa-heart-o" aria-hidden="true"></i> Favoris</a>
-    <a href="#link"><i class="fa fa-home" aria-hidden="true"> </i> Home</a>
+    <a href="{% url 'home' %}"><i class="fa fa-home" aria-hidden="true"> </i> Home</a>
    
     
    

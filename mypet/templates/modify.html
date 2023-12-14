@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    fieldset {
+      background-color: white;
+    }
+    
+    label {
+      display: inline-block;
+      width: 120px;
+      margin-bottom: 10px;
+    }
+    
+    input, select {
+      width: 200px;
+      padding: 10px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    
+    button.cancel {
+      background-color: #9E9E9E;
+    }
+  </style>
+</head>
+<body>
+  <form action="{% url 'modify_row' annonce_id=an.id %}" method="POST">
+    <fieldset>
+      {% csrf_token %}
+      <legend><h3>Informations sur l'animal</h3></legend>
+      
+      <label for="nom-animal">Nom de l'animal:</label>
+      <input type="text" id="nom-animal" name="nameanimal"  value="{{an.nom_animal}}"  required><br><br>
+      
+      <label for="espece">Espèce:</label>
+      <input type="text" id="espece" name="espece" required  value="{{an.espece}}"  ><br><br>
+      
+      <label for="race">Race:</label>
+      <input type="text" id="race" name="race" value="{{an.race}}" ><br><br>
+      
+      <label for="age">Âge:</label>
+      <input type="number" id="age" name="age" value="{{an.age}}" required><br><br>
+      
+      <label for="sexe">Sexe:</label>
+      <select id="sexe" name="sex" required>
+        <option disabled selected >l'ancien {{an.sex}}</option>
+        <option value="male">Mâle</option>
+        <option value="femelle">Femelle</option>
+      </select><br><br>
+      
+      <button type="submit" value="Soumettre">Valider</button>
+      <button class="cancel" style="float: left;">Annuler</button>
+    </fieldset>
+  </form>
+</body>
+</html>

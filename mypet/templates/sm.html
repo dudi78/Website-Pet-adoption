@@ -4,33 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@200&family=Ysabeau:wght@100&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     
 
+
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@200&family=Ysabeau:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'sm.css' %}">
-    <title>Document</title>
+    <title>Your pet</title>
 </head>
 <body >
  
- 
+  {% if user.is_authenticated %}
     <nav>
         <div class="logo">
-         <a href="{% url 'home' %} "><img src="{% static 'images/mypaw.png' %}" alt="Animal paw logo" ></a> 
+         <a href="{% url 'home' %} "><img src="{% static 'images1/mypaw.png' %}" alt="Animal paw logo" ></a> 
         </div>
         <ul>
           <li><a href="">About <i style="font-size:24px" class="fa">&#xf29c;</i></a></li>
           <li><a href="{% url 'posts' %}">Adopt Me <i style="font-size:24px" class="fa">&#xf004;</i></a></li>
           <li><a href="#">Contact <i style="font-size:24px" class="fa">&#xf27b;</i></a></li>
-          <li><a href="#">Sign Up <i style="font-size:24px" class="fa">&#xf234;</i></a></li>
+          <li><a href="{% url 'menu' %}">Profile <i style='font-size:24px' class='fas'>&#xf508;</i></a></li>
         </ul>
       </nav>
-     
+     {% else %}
+     <nav>
+      <div class="logo">
+       <a href="{% url 'home' %} "><img src="{% static 'images1/mypaw.png' %}" alt="Animal paw logo" ></a> 
+      </div>
+      <ul>
+        <li><a href="">About <i style="font-size:24px" class="fa">&#xf29c;</i></a></li>
+        <li><a href="{% url 'posts' %}">Adopt Me <i style="font-size:24px" class="fa">&#xf004;</i></a></li>
+        <li><a href="#">Contact <i style="font-size:24px" class="fa">&#xf27b;</i></a></li>
+        <li><a href="{% url 'register' %}">Sign up <i style="font-size:24px" class="fa">&#xf234;</i> </a></li>
+        <li><a href="{% url 'login' %}"> log in <i style="font-size:24px" class="fa">&#xf090;</i></a></li>
+      </ul>
+    </nav>
+    {% endif %}
+    
       <div>
   
         
        
-        <img src="{% static 'images/myaccimg.png' %}" alt="" class="centered">
+        <img src="{% static 'images1/myaccimg.png' %}" alt="" class="centered">
 
       </div>
     <div>
@@ -38,7 +60,7 @@
             <article>
               <div class="article-wrapper">
                 <figure>
-                  <img src="{% static 'images/dogs.jpg' %}" alt="" />
+                  <img src="{% static 'images1/dogs.jpg' %}" alt="" />
                 </figure>
                 <div class="article-body">
                   <h2> Wonders of Dog</h2>
@@ -57,7 +79,7 @@
           
               <div class="article-wrapper">
                 <figure>
-                  <img src="{% static 'images/dogs2.webp' %}" alt="" />
+                  <img src="{% static 'images1/dogs2.webp' %}" alt="" />
                 </figure>
                 <div class="article-body">
                   <h2>Feline Friends</h2>
@@ -76,7 +98,7 @@
           
               <div class="article-wrapper">
                 <figure>
-                  <img src="{% static 'images/dogs3.jpg' %}" alt="" />
+                  <img src="{% static 'images1/dogs3.jpg' %}" alt="" />
                 </figure>
                 <div class="article-body">
                   <h2>Fluffy Companions</h2>

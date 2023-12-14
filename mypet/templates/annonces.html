@@ -4,8 +4,14 @@
   {% load static %}
   <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@200&family=Ysabeau:wght@100&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
+   
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@200&family=Ysabeau:wght@100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<title>Mes annonces</title>
+
 	<script>
 		function afficherPopup() {
 			document.getElementById("popup").style.display = "block";
@@ -256,52 +262,78 @@ nav a:hover {
 </head>
 <body >
 
-
+  {% load static %}
+  {% if user.is_authenticated %}
   <nav>
+      <div class="logo">
+       <a href="{% url 'home' %} "><img src="{% static 'images1/mypaw.png' %}" alt="Animal paw logo" ></a> 
+      </div>
+      <ul>
+        <li><a href="">About <i style="font-size:24px" class="fa">&#xf29c;</i></a></li>
+        <li><a href="{% url 'posts' %}">Adopt Me <i style="font-size:24px" class="fa">&#xf004;</i></a></li>
+        <li><a href="#">Contact <i style="font-size:24px" class="fa">&#xf27b;</i></a></li>
+        <li><a href="{% url 'menu' %}">Profile <i style='font-size:24px' class='fas'>&#xf508;</i></a></li>
+      </ul>
+    </nav>
+   {% else %}
+   <nav>
     <div class="logo">
-     <a href="{% url 'home' %} "><img src="{% static 'images/mypaw.png' %}" alt="Animal paw logo" ></a> 
+     <a href="{% url 'home' %} "><img src="{% static 'images1/mypaw.png' %}" alt="Animal paw logo" ></a> 
     </div>
     <ul>
       <li><a href="">About <i style="font-size:24px" class="fa">&#xf29c;</i></a></li>
       <li><a href="{% url 'posts' %}">Adopt Me <i style="font-size:24px" class="fa">&#xf004;</i></a></li>
       <li><a href="#">Contact <i style="font-size:24px" class="fa">&#xf27b;</i></a></li>
-      <li><a href="#">Sign Up <i style="font-size:24px" class="fa">&#xf234;</i></a></li>
+      <li><a href="{% url 'register' %}">Sign up <i style="font-size:24px" class="fa">&#xf234;</i> </a></li>
+      
     </ul>
   </nav>
+  {% endif %}
     <div class="conteneur"></div>
 	<header></header>
-	<button class="Ajouter" onclick="afficherPopup()" style="margin-top: 5%;">Ajouter une annonces</button ><br><br>
- <img src="../static/images/cati.png"  alt="" style="display: inline ; width:80px; margin-left:75%">
+	<button class="Ajouter" onclick="afficherPopup()" style:"margin-top:3%" >Ajouter une annonces</button ><br><br>
+ <img src="../static/images1/cati.png"  alt="" style="display: inline ; width:30px; margin-left:75%">
 
- 
-    <div class="wrapper">
-   
-      <div id="annonce" class="a" style="max-width: 400px;">
-        
-        <img class="photo-chat" src=""  alt="Photo du chat"  style="width:800px"> <!--les images du chat-->
-        <h5></h5>
-        <h5></h5>
-        <h5></h5>
-        <p>Si vous êtes intéressé(e), n'hésitez pas à me contacter</p>
-      <button  onclick="afficherPopup()">Modifier</button>
-        <a href="" class=""><button style="background-color:#9E9E9E ;">Supprimer </button></a>
-     
     
-    </div>
-  
- 
+  {% if ANN %}
+    <div class="wrapper" >
+     
+      
+     {% for a in ANN %}
+        <div id="annonce" class="a" style="max-width: 400px;">
+        
+          <img class="photo-chat" src="{% static a.image.url %}"  alt="Photo du chat"  style="width:800px">
+          
 
+          <h5>{{a.age}}</h5>
+        <h5>{{a.sex}}</h5>
+        <h5>{{a.nom_animal}}</h5>
+        <p>Si vous êtes intéressé(e), n'hésitez pas à me contacter</p>
+        <a href="{% url 'modifier' annonce_id=a.id %}" class=""> <button>Modifier</button></a>
+        <a href="{% url 'delete_row' row_id=a.id %}" class=""><button style="background-color:#9E9E9E ;">Supprimer </button></a>
+      
+    
+       </div>
+  
+   
+      {% endfor %}
+      
     </div>
+    {% else %}
+       <div class="alert alert-success" role="alert" style="width:1000px ; margin-left:12%">
+      <span style="visibility: hidden;">hshshshhshhshshshshhhhhhhhhhhhhhhhhhhhh</span>     Add Your first Annonce! <i style='font-size:24px' class='fas'>&#xf6be;</i>
+      </div>
+    {% endif %}
    
 
 	<div id="popup"><button class="cancel-btn" onclick="fermerPopup()" style="background-color: #FF69B4; color: white;">X</button>
-		<div class="contenu" style="background: url(../static/images/bk.avif) ">
+		<div class="contenu" style="background: url(../static/images1/bk.avif) ">
             
 			<h1 style="color: #FF69B4; position: absolute;
             top: 30px;
             left: 40px;">Remplir ces informations</h1>
             
-			<form action="" method="POST" enctype="multipart/form-data">
+			<form action="{% url 'addAN' %}" method="POST" enctype="multipart/form-data">
               
             <fieldset style="background-color: white;">
               {% csrf_token %}
@@ -310,7 +342,7 @@ nav a:hover {
                 <input type="text" id="nom-animal" name="animalname" placeholder="Le nom de l'animal " required style="width:49%; color:black; padding:10px 10px;"><br><br>
               
                 <label for="espece">Espèce :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="text" id="espece" name="prix" required placeholder=" L'espèce de l'animal " style="width:49%; color:black; padding:10px 10px;"><br><br>
+                <input type="text" id="espece" name="espece" required placeholder=" L'espèce de l'animal " style="width:49%; color:black; padding:10px 10px;"><br><br>
               
                 <label for="race">Race :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="text" id="race" name="race" placeholder=" La race de l'animal " style="width:49%; color:black; padding:10px 10px;"><br><br>
@@ -319,7 +351,7 @@ nav a:hover {
                 <input type="number" id="age" name="age" placeholder=" L'age de votre animal" required style="width:49%; color:black; padding:10px 10px;"><br><br>
               
                 <label for="sexe">Sexe :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="sexe" name="sexe" required style="width:53%; color:black; padding:10px 10px; ">
+                <select id="sexe" name="sex" required style="width:53%; color:black; padding:10px 10px; ">
                   <option value="">Sélectionnez</option>
                   <option value="male">Mâle</option>
                   <option value="femelle">Femelle</option>
@@ -328,11 +360,9 @@ nav a:hover {
                <label for="image">Photos de l'animal : (vous avez le droit de 3 photos)</label>
                 <input type="file" id="image" name="image1"><br><br>
                 
-                <input type="file" id="image" name="image2"><br><br>
+               
                 
-                <input type="file" id="image" name="image3"><br><br>
-                
-                <button type="submit" value="Soumettre"> Valider</button> &nbsp;
+               <button type="submit" value="Soumettre"> Valider</button> &nbsp;
             </fieldset>
               </form>
             <div>
